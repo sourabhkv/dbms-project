@@ -1,0 +1,173 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Cricket Tables</title>  
+    <style>  
+        table {  
+            width: 100%;  
+            border-collapse: collapse;  
+            margin-bottom: 20px;  
+        }  
+        table, th, td {  
+            border: 1px solid black;  
+        }  
+        th, td {  
+            padding: 8px;  
+            text-align: left;  
+        }  
+        th {  
+            background-color: #f2f2f2;  
+        }  
+        tr:nth-child(even) {  
+            background-color: #f9f9f9;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <!-- Teams Table -->  
+    <h2>Teams</h2>  
+    <table>  
+        <tr>  
+            <th>Team ID</th>  
+            <th>Name</th>  
+            <th>Ranking</th>  
+        </tr>  
+        {% for team in teams %}  
+        <tr>  
+            <td>{{ team.team_id }}</td>  
+            <td>{{ team.name }}</td>  
+            <td>{{ team.ranking }}</td>  
+        </tr>  
+        {% endfor %}  
+    </table>  
+  
+    <!-- Batsmen Table -->  
+    <h2>Batsmen</h2>  
+    <table>  
+        <tr>  
+            <th>Player ID</th>  
+            <th>Name</th>  
+            <th>Team</th>  
+        </tr>  
+        {% for batsman in batsmen %}  
+        <tr>  
+            <td>{{ batsman.player_id }}</td>  
+            <td>{{ batsman.name }}</td>  
+            <td>{{ batsman.team.name }}</td>  
+        </tr>  
+        {% endfor %}  
+    </table>  
+  
+    <!-- Bowlers Table -->  
+    <h2>Bowlers</h2>  
+    <table>  
+        <tr>  
+            <th>Player ID</th>  
+            <th>Name</th>  
+            <th>Team</th>  
+        </tr>  
+        {% for bowler in bowlers %}  
+        <tr>  
+            <td>{{ bowler.player_id }}</td>  
+            <td>{{ bowler.name }}</td>  
+            <td>{{ bowler.team.name }}</td>  
+        </tr>  
+        {% endfor %}  
+    </table>  
+  
+    <!-- Umpires Table -->  
+    <h2>Umpires</h2>  
+    <table>  
+        <tr>  
+            <th>Umpire ID</th>  
+            <th>Name</th>  
+            <th>Country of Origin</th>  
+            <th>Number of Matches</th>  
+        </tr>  
+        {% for umpire in umpires %}  
+        <tr>  
+            <td>{{ umpire.umpire_id }}</td>  
+            <td>{{ umpire.name }}</td>  
+            <td>{{ umpire.country_of_origin }}</td>  
+            <td>{{ umpire.num_matches }}</td>  
+        </tr>  
+        {% endfor %}  
+    </table>  
+  
+    <!-- Coaches Table -->  
+    <h2>Coaches</h2>  
+    <table>  
+        <tr>  
+            <th>Coach ID</th>  
+            <th>Name</th>  
+            <th>Team</th>  
+        </tr>  
+        {% for coach in coaches %}  
+        <tr>  
+            <td>{{ coach.coach_id }}</td>  
+            <td>{{ coach.name }}</td>  
+            <td>{{ coach.team.name }}</td>  
+        </tr>  
+        {% endfor %}  
+    </table>  
+  
+    <!-- Captains Table -->  
+    <h2>Captains</h2>  
+    <table>  
+        <tr>  
+            <th>Captain ID</th>  
+            <th>Name</th>  
+            <th>Team</th>  
+            <th>Number of Years Captaincy</th>  
+            <th>Number of Wins</th>  
+        </tr>  
+        {% for captain in captains %}  
+        <tr>  
+            <td>{{ captain.captain_id }}</td>  
+            <td>{{ captain.player.name }}</td>  
+            <td>{{ captain.player.team.name }}</td>  
+            <td>{{ captain.num_years_captaincy }}</td>  
+            <td>{{ captain.num_wins }}</td>  
+        </tr>  
+        {% endfor %}  
+    </table>  
+  
+    <!-- Matches Table -->  
+    <h2>Matches</h2>  
+<table>  
+    <tr>  
+        <th>Match ID</th>  
+        <th>Teams</th>  
+        <th>Stadium</th>  
+        <th>Winner Team</th>  
+        <th>Match Date</th>  
+        <th>Match Time</th>  
+        <th>Umpire</th>  
+    </tr>  
+    {% for match in matches %}  
+    <tr>  
+        <td>{{ match.match_id }}</td>  
+        <td>{% for team in match.teams.all %}{{ team.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>  
+        <td>{{ match.stadium }}</td>  
+        <td>  
+            {% if match.winner_team %}  
+                {{ match.winner_team.name }}  
+            {% else %}  
+                TBD  
+            {% endif %}  
+        </td>  
+        <td>{{ match.match_date }}</td>  
+        <td>{{ match.match_time }}</td>  
+        <td>  
+            {% if match.umpire %}  
+                {{ match.umpire.name }}  
+            {% else %}  
+                TBD  
+            {% endif %}  
+        </td>  
+    </tr>  
+    {% endfor %}  
+</table>    
+</body>  
+</html>  
