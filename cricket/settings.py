@@ -76,17 +76,12 @@ WSGI_APPLICATION = 'cricket.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {  
-    'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'dbms',  
-        'USER': 'root',  
-        'PASSWORD': 'qwerty@12345',  
-        'HOST': 'localhost',   # Or the IP Address of your MySQL server  
-        'PORT': '3306',        # The default port for MySQL is 3306  
-    }  
-}  
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 # Password validation

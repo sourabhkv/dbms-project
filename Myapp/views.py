@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from mysql.connector import connect, Error
 from django.http import HttpResponse
 
 from django.shortcuts import render  
